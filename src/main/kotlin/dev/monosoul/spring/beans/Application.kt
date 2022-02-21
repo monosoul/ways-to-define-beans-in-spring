@@ -1,5 +1,7 @@
 package dev.monosoul.spring.beans
 
+import dev.monosoul.spring.beans.base.Greeter
+import org.springframework.beans.factory.getBeansOfType
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +9,7 @@ import org.springframework.boot.runApplication
 class Application
 
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<Application>(*args).getBeansOfType<Greeter>().forEach { (_, greeter) ->
+        greeter.sayHello()
+    }
 }
